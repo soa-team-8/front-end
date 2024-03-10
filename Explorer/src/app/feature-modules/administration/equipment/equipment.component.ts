@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdministrationService } from '../administration.service';
 import { Equipment } from '../model/equipment.model';
-import { PagedResults } from 'src/app/shared/model/paged-results.model';
-
 
 @Component({
   selector: 'xp-equipment',
@@ -15,13 +13,13 @@ export class EquipmentComponent implements OnInit {
   selectedEquipment: Equipment;
   shouldRenderEquipmentForm: boolean = false;
   shouldEdit: boolean = false;
-  
+
   constructor(private service: AdministrationService) { }
 
   ngOnInit(): void {
     this.getEquipment();
   }
-  
+
   deleteEquipment(id: number): void {
     this.service.deleteEquipment(id).subscribe({
       next: () => {
@@ -32,8 +30,8 @@ export class EquipmentComponent implements OnInit {
 
   getEquipment(): void {
     this.service.getEquipment().subscribe({
-      next: (result: PagedResults<Equipment>) => {
-        this.equipment = result.results;
+      next: (result: Equipment[]) => {
+        this.equipment = result;
       },
       error: () => {
       }
@@ -49,5 +47,9 @@ export class EquipmentComponent implements OnInit {
   onAddClicked(): void {
     this.shouldEdit = false;
     this.shouldRenderEquipmentForm = true;
+  }
+
+  closeForm(): void {
+    this.shouldRenderEquipmentForm = false;
   }
 }

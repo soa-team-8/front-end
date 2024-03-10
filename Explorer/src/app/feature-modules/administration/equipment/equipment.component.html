@@ -1,36 +1,37 @@
 <div id="equipment">
-    <div id="equipment-details">
+  <div id="equipment-details">
     <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let eq of equipment">
-                    <td>{{eq.name}}</td>
-                    <td class="description" >{{eq.description}}</td>
-                    <td>
-                        <button color="accent" (click)="deleteEquipment(eq.id || 0)" mat-icon-button>
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                        <button color="primary" (click)="onEditClicked(eq)" mat-icon-button>
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                    </td>
-                </tr>
-                <tr><button (click)="onAddClicked()" mat-icon-button>
-                    <mat-icon>add</mat-icon>
-                </button></tr>
-            </tbody>
-        </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let equip of equipment">
+            <td>{{equip.name}}</td>
+            <td class="description">{{equip.description}}</td>
+            <td>
+              <button color="accent" (click)="deleteEquipment(equip.id || 0)" mat-icon-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button color="primary" (click)="onEditClicked(equip)" mat-icon-button>
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+          </tr>
+          <tr><button (click)="onAddClicked()" mat-icon-button>
+              <mat-icon>add</mat-icon>
+            </button></tr>
+        </tbody>
+      </table>
     </div>
     <div>
-        <xp-equipment-form *ngIf="shouldRenderEquipmentForm" [shouldEdit]="shouldEdit" [equipment]="selectedEquipment" (equimpentUpdated)="getEquipment()"></xp-equipment-form>
+      <xp-equipment-form *ngIf="shouldRenderEquipmentForm" [shouldEdit]="shouldEdit"
+        [equipment]="selectedEquipment || {}" (equimpentUpdated)="getEquipment()"
+        (formClosed)="closeForm()"></xp-equipment-form>
     </div>
-    </div>
+  </div>
 </div>
-

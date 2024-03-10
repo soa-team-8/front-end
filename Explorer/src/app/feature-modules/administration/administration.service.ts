@@ -25,8 +25,12 @@ export class AdministrationService {
 
   constructor(private http: HttpClient) { }
 
-  getEquipment(): Observable<PagedResults<Equipment>> {
-    return this.http.get<PagedResults<Equipment>>(environment.apiHost + 'administration/equipment')
+  getEquipment(): Observable<Equipment[]> {
+    return this.http.get<Equipment[]>(environment.apiHost + 'administration/equipment')
+  }
+
+  getEquipmentPaged(page: number, pageSize: number): Observable<PagedResults<Equipment>> {
+    return this.http.get<PagedResults<Equipment>>(`${environment.apiHost}administration/equipment/paged?page=${page}&pageSize=${pageSize}`);
   }
 
   deleteEquipment(id: number): Observable<Equipment> {
