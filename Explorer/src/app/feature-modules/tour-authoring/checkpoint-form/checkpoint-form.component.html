@@ -2,14 +2,15 @@
     <div id="checkpoint">
         <p class="subtitle">Create checkpoint</p>
         <br>
-        <p>📌  Choose one of public checkpoints: </p>
+        <p>📌 Choose one of public checkpoints: </p>
         <mat-form-field>
-            <mat-select (selectionChange)="onPublicCPChange($event)" formControlName="publicCP" placeholder="{{selectPublicCPName}}">
+            <mat-select (selectionChange)="onPublicCPChange($event)" formControlName="publicCP"
+                placeholder="{{selectPublicCPName}}">
                 <mat-option *ngFor="let p of publicCheckpoints" value="{{p.id}}">{{p.name}}</mat-option>
             </mat-select>
 
         </mat-form-field>
-        <p>✏️  Or create new checkpoint: </p>
+        <p>✏️ Or create new checkpoint: </p>
         <mat-form-field>
             <mat-label>Name:</mat-label>
             <input matInput type="text" formControlName="name">
@@ -18,7 +19,7 @@
             <mat-label>Description:</mat-label>
             <input matInput type="text" formControlName="description">
         </mat-form-field>
-        <p>🕗  Required time:</p>
+        <p>🕗 Required time:</p>
         <div class="time">
             <mat-form-field>
                 <mat-label>hours</mat-label>
@@ -29,9 +30,9 @@
                 <input matInput type="number" min="0" max="60" step="5" formControlName="minutes">
             </mat-form-field>
         </div>
-        <p>🗺️  Input address or choose on map:</p>
+        <p>🗺️ Input address or choose on map:</p>
         <div class="address">
-            <p>Address:     </p>
+            <p>Address: </p>
             <input matInput type="text" formControlName="address" class="adress-input">
             <button class="buttonPlus" (click)="onAddAddressClick()" mat-raised-button>✔</button>
         </div>
@@ -49,7 +50,7 @@
             </mat-form-field>
         </div>
 
-        <input type="file" (change)="onImageSelected($event)" class="file-input" multiple #fileUpload/>
+        <input type="file" (change)="onImageSelected($event)" class="file-input" multiple #fileUpload />
         <div class="file-upload">
             <button mat-flat-button class="upload-btn" (click)="fileUpload.click()">
                 <mat-icon>insert_photo</mat-icon>
@@ -58,21 +59,22 @@
         </div>
 
         <div class="image-container" *ngIf="picturePreview && picturePreview.length > 0">
-            <img *ngFor="let image of picturePreview" [src]="image" alt="Image" style="max-width: 200px; max-height: 200px;">
+            <img *ngFor="let image of picturePreview" [src]="image" alt="Image"
+                style="max-width: 200px; max-height: 200px;">
         </div>
 
-            <mat-form-field *ngIf="!shouldEdit">
-                <label>Checkpoint status</label>
-                <mat-select formControlName="status">
-                  <mat-option value="Private">Private</mat-option>
-                  <mat-option value="Public">Public</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <div class="routingButton">
-                <button (click)="onBack()" class="button" mat-raised-button>Back</button>
-                <button *ngIf="!shouldEdit" class="button" (click)="addCheckpoint()" mat-raised-button>Add checkpoint</button>
-                <button *ngIf="shouldEdit" class="button" (click)="updateCheckpoint()" mat-raised-button>Next</button>
-            </div>
+        <mat-form-field *ngIf="!shouldEdit">
+            <label>Checkpoint status</label>
+            <mat-select formControlName="status">
+                <mat-option value="Private">Private</mat-option>
+                <mat-option value="Public">Public</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="routingButton">
+            <button (click)="onBack()" class="button" mat-raised-button>Back</button>
+            <button *ngIf="!shouldEdit" class="button" (click)="addCheckpoint()" mat-raised-button>Add
+                checkpoint</button>
+            <button *ngIf="shouldEdit" class="button" (click)="updateCheckpoint()" mat-raised-button>Next</button>
+        </div>
     </div>
 </form>
-        
