@@ -7,7 +7,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CheckpointSecret } from '../model/checkpointSecret.model';
 import { ImageService } from 'src/app/shared/image/image.service';
 
-
 @Component({
   selector: 'xp-checkpoint-secret-form',
   templateUrl: './checkpoint-secret-form.component.html',
@@ -35,7 +34,6 @@ export class CheckpointSecretFormComponent implements OnInit {
         this.getCheckpoint(this.id);
       }
     })
-
   }
 
   ngOnChanges(): void {
@@ -47,7 +45,6 @@ export class CheckpointSecretFormComponent implements OnInit {
   getCheckpoint(id: number): void {
     this.service.getCheckpoint(id).subscribe((result: Checkpoint) => {
       this.checkpoint = result;
-      console.log(this.checkpoint);
       if (this.checkpoint.checkpointSecret != null) {
         this.picturePreview = this.checkpoint.checkpointSecret?.pictures?.map(imageName => this.getImageUrl(imageName)) || [];
         this.secretForm.patchValue({
@@ -68,13 +65,11 @@ export class CheckpointSecretFormComponent implements OnInit {
     this.fillImages(formData);
 
     if (secret.description !== "") {
-      console.log(secret);
       this.service.addCheckpointSecret(formData, this.id).subscribe((result: Checkpoint) => {
+        console.log(result);
         this.checkpoint = result;
-        console.log(this.checkpoint);
       });
       this.router.navigate([`checkpoint/${this.checkpoint.tourId}`]);
-
     }
   }
 
@@ -83,7 +78,6 @@ export class CheckpointSecretFormComponent implements OnInit {
       const selectedFiles = this.secretForm.value.pictures;
       for (let i = 0; i < selectedFiles.length; i++) {
         formData.append('pictures', selectedFiles[i]);
-        console.log(formData.get('pictures'))
       }
     }
   }
