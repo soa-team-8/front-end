@@ -10,8 +10,8 @@ export interface Tour {
     demandignessLevel: string;
     price: number;
     tags: string[];
-    authorId : number;
-    status:string;
+    authorId: number;
+    status: string;
     equipment: Equipment[];
     closed?: boolean;
     checkpoints: Checkpoint[];

@@ -5,7 +5,6 @@ import { Tour } from '../model/tour.model';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'xp-tour-equipment',
   templateUrl: './tour-equipment.component.html',
@@ -13,17 +12,17 @@ import { Router } from '@angular/router';
 })
 export class TourEquipmentComponent implements OnInit {
 
-  constructor(private service: TourAuthoringService,private activatedRoute:ActivatedRoute,private router:Router) { }
+  constructor(private service: TourAuthoringService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
-  tour:Tour;
-  id:number;
+  tour: Tour;
+  id: number;
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params=>{
-     this.id=params['id'];
-     this.getTour(this.id);
-   })
- }
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params['id'];
+      this.getTour(this.id);
+    })
+  }
 
   availableEquipment: Equipment[];
   currentEquipmentIds: number[] = [];
@@ -32,21 +31,17 @@ export class TourEquipmentComponent implements OnInit {
   showButtonText: string = 'Show equipment';
   showAvailableButtonText: string = 'Show available equipment';
 
-
   getTour(id: number): void {
     this.service.get(id).subscribe((result: Tour) => {
       this.tour = result;
-      // Once this.tour is defined, you can safely access its equipment
       this.currentEquipmentIds = this.tour.equipment.map(e => e.id as number);
-  
-      // Now, call the method that depends on this.tour and its equipment
       this.getAvailableEquipment(this.currentEquipmentIds);
+      console.log(this.tour)
     });
   }
 
-
-  getAvailableEquipment(currentEquipmentIds: number[]): void{
-    if(this.tour.id !== undefined){
+  getAvailableEquipment(currentEquipmentIds: number[]): void {
+    if (this.tour.id !== undefined) {
       this.service.getAvailableEquipment(currentEquipmentIds, this.tour.id).subscribe((result: Equipment[]) => {
         this.availableEquipment = result;
       })
@@ -54,7 +49,7 @@ export class TourEquipmentComponent implements OnInit {
   }
 
   removeEquipment(tourId?: number, equipmentId?: number): void {
-    if(tourId !== undefined && equipmentId !== undefined){
+    if (tourId !== undefined && equipmentId !== undefined) {
       this.service.removeEquipment(tourId, equipmentId).subscribe({
         next: (result: Tour) => {
           this.tour = result;
@@ -68,7 +63,7 @@ export class TourEquipmentComponent implements OnInit {
   }
 
   addEquipment(tourId?: number, equipmentId?: number): void {
-    if(tourId !== undefined && equipmentId !== undefined){
+    if (tourId !== undefined && equipmentId !== undefined) {
       this.service.addEquipment(tourId, equipmentId).subscribe({
         next: (result: Tour) => {
           this.tour = result;
@@ -82,32 +77,32 @@ export class TourEquipmentComponent implements OnInit {
   }
 
   onShowEquipmentClick(): void {
-    if(this.isVisibleEquipment){
+    if (this.isVisibleEquipment) {
       this.isVisibleEquipment = false;
       this.showButtonText = 'Show equipment';
     }
-    else{
+    else {
       this.isVisibleEquipment = true;
       this.showButtonText = 'Hide equipment';
     }
   }
 
   onShowAvailableEquipmenClick(): void {
-    if(this.isVisibleAvailableEquipment){
+    if (this.isVisibleAvailableEquipment) {
       this.isVisibleAvailableEquipment = false;
       this.showAvailableButtonText = 'Show available equipment';
     }
-    else{
+    else {
       this.isVisibleAvailableEquipment = true;
       this.showAvailableButtonText = 'Hide available equipment';
     }
   }
 
-  showCheckpoints():void{
+  showCheckpoints(): void {
     this.router.navigate([`checkpoint/${this.id}`]);
 
   }
-  showTours():void{
+  showTours(): void {
     this.router.navigate([`tour-form/${this.id}`]);
 
   }

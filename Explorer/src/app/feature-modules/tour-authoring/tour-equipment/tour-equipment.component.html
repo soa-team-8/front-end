@@ -1,65 +1,64 @@
 <body>
-<div id="equipment-div">
-<div >
-    <br>
-    <br>
-<p class="title">Manage tour equipment</p>
-<br>
+  <div id="equipment-div">
+    <div>
+      <br>
+      <br>
+      <p class="title">Manage tour equipment</p>
+      <br>
 
-    <p class="subtitle">Added eqipment</p>
-<table class="equipment-details-table" style="border-collapse: collapse; width: 100%;">
-    <thead>
-        <tr>
+      <p class="subtitle">Added eqipment</p>
+      <table class="equipment-details-table" style="border-collapse: collapse; width: 100%;">
+        <thead>
+          <tr>
             <th class="equipment-th" style="border: 1px solid #E67840;">Name</th>
             <th class="equipment-th" style="border: 1px solid #E67840;">Description</th>
             <th class="equipment-th" style="border: 1px solid #E67840;">Remove</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr *ngFor="let e of tour.equipment" style="border: 1px solid #E67840;">
-            <td style="border: 1px solid #E67840;">{{e.name}}</td>
-            <td style="border: 1px solid #E67840;font-size: 80%;" >{{e.description}}</td>
-            <td style="border: 1px solid #E67840;">
-                <button class="buttonPlus" (click)="removeEquipment(tour.id, e.id)" mat-raised-button>-</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
-</div>
-
-<!-- Available equipments -->
-<div id="equipment-div">
-<p class="subtitle">Available equipment</p>
-<div id="table-equipment-div">
-    <table id="equipment-details-table" style="border-collapse: collapse; width: 100%; border: 1px solid #E67840;">
-        <thead>
-            <tr>
-                <th class="equipment-th" style="border: 1px solid #E67840;">Name</th>
-                <th class="equipment-th" style="border: 1px solid #E67840;">Description</th>
-                <th class="equipment-th" style="border: 1px solid #E67840;">Add</th>
-            </tr>
+          </tr>
         </thead>
-        
+
         <tbody>
-            <tr *ngFor="let e of availableEquipment" style="border: 1px solid #E67840;">
-                <td style="border: 1px solid #E67840;">{{e.name}}</td>
-                <td style="border: 1px solid #E67840;font-size:80%;">{{e.description}}</td>
-                <td style="border: 1px solid #E67840;">
-                    <button class="buttonPlus" (click)="addEquipment(tour.id, e.id)" mat-raised-button>+</button>
-                </td>
-            </tr>
+          <tr *ngFor="let e of tour.equipment" style="border: 1px solid #E67840;">
+            <td style="border: 1px solid #E67840;">{{e.name}}</td>
+            <td style="border: 1px solid #E67840;font-size: 80%;">{{e.description}}</td>
+            <td style="border: 1px solid #E67840;">
+              <button class="buttonPlus" (click)="removeEquipment(tour.id, e.id)" mat-raised-button>-</button>
+            </td>
+          </tr>
         </tbody>
-    </table>
-    
-</div>
-<br>
-<br>
-<div class="routingButton">
-    <button (click)="showTours()" class="button" mat-raised-button>Back</button>
+      </table>
+    </div>
 
-    <button (click)="showCheckpoints()" class="button" mat-raised-button>Next</button>
+    <!-- Available equipments -->
+    <div id="equipment-div">
+      <p class="subtitle">Available equipment</p>
+      <div id="table-equipment-div">
+        <table id="equipment-details-table" style="border-collapse: collapse; width: 100%; border: 1px solid #E67840;">
+          <thead>
+            <tr>
+              <th class="equipment-th" style="border: 1px solid #E67840;">Name</th>
+              <th class="equipment-th" style="border: 1px solid #E67840;">Description</th>
+              <th class="equipment-th" style="border: 1px solid #E67840;">Add</th>
+            </tr>
+          </thead>
 
-</div>
-</div>
+          <tbody>
+            <tr *ngFor="let e of availableEquipment" style="border: 1px solid #E67840;">
+              <td style="border: 1px solid #E67840;">{{e.name}}</td>
+              <td style="border: 1px solid #E67840;font-size:80%;">{{e.description}}</td>
+              <td style="border: 1px solid #E67840;">
+                <button class="buttonPlus" (click)="addEquipment(tour.id, e.id)" mat-raised-button>+</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
+      </div>
+      <br>
+      <br>
+      <div class="routingButton">
+        <button (click)="showTours()" class="button" mat-raised-button>Back</button>
+
+        <button (click)="showCheckpoints()" class="button" mat-raised-button>Next</button>
+
+      </div>
+    </div>

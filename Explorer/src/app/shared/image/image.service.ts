@@ -9,6 +9,6 @@ export class ImageService {
   constructor() { }
 
   getImageUrl(imageName: string): string {
-    return `${environment.wwwRoot}/images/${imageName}`;
+    return `http://localhost:3000/images/${imageName}`;
   }
 }
