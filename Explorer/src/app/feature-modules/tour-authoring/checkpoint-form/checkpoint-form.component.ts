@@ -121,11 +121,9 @@ export class CheckpointFormComponent implements OnChanges, OnInit {
 
   updateCheckpoint(): void {
     const formData = new FormData();
-
     const checkpoint = this.fillUpdateForm();
     this.fillFormData(formData, checkpoint);
     this.fillImages(formData);
-
     checkpoint.id = this.selectedCheckpoint.id;
     if (this.validate(checkpoint.name)) {
       this.service.updateCheckpoint(checkpoint.id!, formData).subscribe({
@@ -133,7 +131,6 @@ export class CheckpointFormComponent implements OnChanges, OnInit {
           this.checkpointUpdated.emit();
           //this.router.navigate([`checkpoint-secret/${result.id}`]);
           this.router.navigate([`encounter-form/${result.id}`]);
-
         }
       });
     }
@@ -142,8 +139,6 @@ export class CheckpointFormComponent implements OnChanges, OnInit {
   private searchByAddress(inputAddress: string) {
     this.mapComponent.search(inputAddress).subscribe({
       next: (location) => {
-        // Handle the location data here 
-        // eg. send it to back-end
         const foundLocation = location;
         console.log('Found Location Lat:', foundLocation.lat);
         console.log('Found Location Lon:', foundLocation.lon);
@@ -214,11 +209,27 @@ export class CheckpointFormComponent implements OnChanges, OnInit {
   }
 
   private fillImages(formData: FormData) {
-    if (this.checkpointForm.value.pictures) {
-      const selectedFiles = this.checkpointForm.value.pictures;
-      for (let i = 0; i < selectedFiles.length; i++) {
-        formData.append('pictures', selectedFiles[i]);
-        console.log(formData.get('pictures'))
+    const newPictures = this.checkpointForm.value.pictures;
+    if (newPictures) {
+      for (let i = 0; i < newPictures.length; i++) {
+        formData.append('pictures', newPictures[i]);
+      }
+    }
+
+    const existingPictures = this.selectedCheckpoint.pictures;
+    console.log('exist: ' + existingPictures?.length)
+    if (existingPictures && newPictures) {
+      for (let i = 0; i < existingPictures.length; i++) {
+        let pictureChanged = true;
+        for (let j = 0; j < newPictures.length; j++) {
+          if (typeof newPictures[j] === 'string' && existingPictures[i] === newPictures[j]) {
+            pictureChanged = false;
+            break;
+          }
+        }
+        if (pictureChanged) {
+          formData.append('pictures', existingPictures[i]);
+        }
       }
     }
   }
@@ -271,6 +282,7 @@ export class CheckpointFormComponent implements OnChanges, OnInit {
       encounterId: this.selectedCheckpoint.encounterId,
       isSecretPrerequisite: this.selectedCheckpoint.isSecretPrerequisite
     };
+
     return checkpoint;
   }
 
