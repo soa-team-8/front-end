@@ -11,6 +11,7 @@ import { AdministrationService } from '../administration.service';
 export class EquipmentFormComponent implements OnChanges {
 
   @Output() equimpentUpdated = new EventEmitter<null>();
+  @Output() formClosed = new EventEmitter<null>();
   @Input() equipment: Equipment;
   @Input() shouldEdit: boolean = false;
 
@@ -19,7 +20,7 @@ export class EquipmentFormComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.equipmentForm.reset();
-    if(this.shouldEdit) {
+    if (this.shouldEdit) {
       this.equipmentForm.patchValue(this.equipment);
     }
   }
@@ -35,7 +36,10 @@ export class EquipmentFormComponent implements OnChanges {
       description: this.equipmentForm.value.description || "",
     };
     this.service.addEquipment(equipment).subscribe({
-      next: () => { this.equimpentUpdated.emit() }
+      next: () => {
+        this.equimpentUpdated.emit();
+        this.formClosed.emit();
+      }
     });
   }
 
@@ -46,7 +50,10 @@ export class EquipmentFormComponent implements OnChanges {
     };
     equipment.id = this.equipment.id;
     this.service.updateEquipment(equipment).subscribe({
-      next: () => { this.equimpentUpdated.emit();}
+      next: () => {
+        this.equimpentUpdated.emit();
+        this.formClosed.emit();
+      }
     });
   }
 }

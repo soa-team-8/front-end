@@ -17,7 +17,6 @@ import { PublicTour } from '../marketplace/model/public-tour.model';
 import { PrivateTour } from './model/private-tour.model';
 import { CheckpointStatistics } from './model/checkpoint-statistics.model';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -29,6 +28,18 @@ export class TourAuthoringService {
     this.authService.user$.subscribe( result =>{
       this.user= result;
     });
+  }
+
+  addCheckpoint(checkpoint: FormData, status: string): Observable<Checkpoint> {
+    return this.http.post<Checkpoint>(environment.apiHost +`administration/checkpoint/create/${status}`, checkpoint);
+  }
+
+  addCheckpointSecret(checkpointSecret: FormData, id: number): Observable<Checkpoint> {
+    return this.http.put<Checkpoint>(environment.apiHost + 'administration/checkpoint/create-secret/' + id, checkpointSecret);
+  }
+
+  updateCheckpointSecret(checkpointSecret: CheckpointSecret,id:number): Observable<Checkpoint> {
+    return this.http.put<Checkpoint>(environment.apiHost + 'administration/checkpoint/update-secret/' + id, checkpointSecret);
   }
   
   getPrivateTours(touristId: number): Observable<PrivateTour[]> {
@@ -42,6 +53,7 @@ export class TourAuthoringService {
   getCheckpoints(): Observable<PagedResults<Checkpoint>> {
     return this.http.get<PagedResults<Checkpoint>>(environment.apiHost + 'administration/checkpoint')
   }
+
   getCheckpoint(id:number): Observable<Checkpoint> {
     return this.http.get<Checkpoint>(environment.apiHost + 'administration/checkpoint/details/'+id);
   }
@@ -54,21 +66,9 @@ export class TourAuthoringService {
     return this.http.delete<Checkpoint>(environment.apiHost + 'administration/checkpoint/' + id);
   }
 
-  addCheckpoint(checkpoint: FormData, status: string): Observable<Checkpoint> {
-    return this.http.post<Checkpoint>(environment.apiHost +`administration/checkpoint/create/${status}`, checkpoint);
-  }
-
   updateCheckpoint(checkpointId: number, checkpoint: FormData): Observable<Checkpoint> {
     console.log(checkpointId);
     return this.http.put<Checkpoint>(environment.apiHost + 'administration/checkpoint/' + checkpointId, checkpoint);
-  }
-
-  addCheckpointSecret(checkpointSecret: FormData, id: number): Observable<Checkpoint> {
-    return this.http.put<Checkpoint>(environment.apiHost + 'administration/checkpoint/createSecret/' + id, checkpointSecret);
-  }
-
-  updateCheckpointSecret(checkpointSecret: CheckpointSecret,id:number): Observable<Checkpoint> {
-    return this.http.put<Checkpoint>(environment.apiHost + 'administration/checkpoint/updateSecret/' + id, checkpointSecret);
   }
 
   getMapObjects(): Observable<PagedResults<MapObject>> {
@@ -90,7 +90,6 @@ export class TourAuthoringService {
       formData.append('picture', mapObject.picture, mapObject.picture.name);
     }
   
-    // Assuming profilePictureUrl is a string
     formData.append('pictureURL', mapObject.pictureURL);
     return this.http.post<MapObject>(environment.apiHost + `administration/mapobject/create/${userId}/${status}`, formData, options);
   }
@@ -107,11 +106,9 @@ export class TourAuthoringService {
       formData.append('picture', mapObject.picture, mapObject.picture.name);
     }
   
-    // Assuming profilePictureUrl is a string
     formData.append('pictureURL', mapObject.pictureURL);
     return this.http.put<MapObject>(environment.apiHost + 'administration/mapobject/' + mapObject.id, formData, options);
   }
-  
   
   addTour(tour: Tour): Observable<Tour> {
     return this.http.post<Tour>(environment.apiHost + 'administration/tour', tour);

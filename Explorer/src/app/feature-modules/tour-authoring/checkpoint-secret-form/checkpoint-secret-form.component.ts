@@ -1,4 +1,4 @@
-import { Component,OnInit,OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { TourAuthoringService } from '../tour-authoring.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -7,20 +7,19 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CheckpointSecret } from '../model/checkpointSecret.model';
 import { ImageService } from 'src/app/shared/image/image.service';
 
-
 @Component({
   selector: 'xp-checkpoint-secret-form',
   templateUrl: './checkpoint-secret-form.component.html',
   styleUrls: ['./checkpoint-secret-form.component.css']
 })
-export class CheckpointSecretFormComponent implements OnInit{
+export class CheckpointSecretFormComponent implements OnInit {
 
-  constructor(private service: TourAuthoringService, private imageService: ImageService, private router:Router,private activatedRoute:ActivatedRoute){
+  constructor(private service: TourAuthoringService, private imageService: ImageService, private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
-  id:number;
-  shouldEdit:Boolean=false;
-  checkpoint:Checkpoint;
+  id: number;
+  shouldEdit: Boolean = false;
+  checkpoint: Checkpoint;
   picturePreview: string[] = [];
 
   secretForm = new FormGroup({
@@ -29,18 +28,16 @@ export class CheckpointSecretFormComponent implements OnInit{
   });
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params=>{
-      this.id=params['id'];
-      if(this.id != 0)
-      {
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params['id'];
+      if (this.id != 0) {
         this.getCheckpoint(this.id);
       }
     })
-
   }
 
   ngOnChanges(): void {
-    if(this.checkpoint.checkpointSecret!=null){
+    if (this.checkpoint.checkpointSecret != null) {
       this.picturePreview = this.checkpoint.checkpointSecret?.pictures?.map(imageName => this.getImageUrl(imageName)) || [];
     }
   }
@@ -48,8 +45,7 @@ export class CheckpointSecretFormComponent implements OnInit{
   getCheckpoint(id: number): void {
     this.service.getCheckpoint(id).subscribe((result: Checkpoint) => {
       this.checkpoint = result;
-      console.log(this.checkpoint);
-      if (this.checkpoint.checkpointSecret != null) {   
+      if (this.checkpoint.checkpointSecret != null) {
         this.picturePreview = this.checkpoint.checkpointSecret?.pictures?.map(imageName => this.getImageUrl(imageName)) || [];
         this.secretForm.patchValue({
           description: this.checkpoint.checkpointSecret.description
@@ -58,25 +54,22 @@ export class CheckpointSecretFormComponent implements OnInit{
     });
   }
 
-  onFinish(): void{
+  onFinish(): void {
     const formData = new FormData();
 
     const secret: CheckpointSecret = {
-      description: this.secretForm.value.description||"",
+      description: this.secretForm.value.description || "",
     };
 
     formData.append('description', secret.description);
     this.fillImages(formData);
 
-    if(secret.description!=="")
-    {
-      console.log(secret);
-      this.service.addCheckpointSecret(formData,this.id).subscribe((result: Checkpoint) => {
+    if (secret.description !== "") {
+      this.service.addCheckpointSecret(formData, this.id).subscribe((result: Checkpoint) => {
+        console.log(result);
         this.checkpoint = result;
-        console.log(this.checkpoint);
       });
       this.router.navigate([`checkpoint/${this.checkpoint.tourId}`]);
-
     }
   }
 
@@ -85,7 +78,6 @@ export class CheckpointSecretFormComponent implements OnInit{
       const selectedFiles = this.secretForm.value.pictures;
       for (let i = 0; i < selectedFiles.length; i++) {
         formData.append('pictures', selectedFiles[i]);
-        console.log(formData.get('pictures'))
       }
     }
   }
