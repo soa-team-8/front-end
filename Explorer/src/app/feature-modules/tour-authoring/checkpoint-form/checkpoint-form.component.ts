@@ -209,27 +209,11 @@ export class CheckpointFormComponent implements OnChanges, OnInit {
   }
 
   private fillImages(formData: FormData) {
-    const newPictures = this.checkpointForm.value.pictures;
-    if (newPictures) {
-      for (let i = 0; i < newPictures.length; i++) {
-        formData.append('pictures', newPictures[i]);
-      }
-    }
-
-    const existingPictures = this.selectedCheckpoint.pictures;
-    console.log('exist: ' + existingPictures?.length)
-    if (existingPictures && newPictures) {
-      for (let i = 0; i < existingPictures.length; i++) {
-        let pictureChanged = true;
-        for (let j = 0; j < newPictures.length; j++) {
-          if (typeof newPictures[j] === 'string' && existingPictures[i] === newPictures[j]) {
-            pictureChanged = false;
-            break;
-          }
-        }
-        if (pictureChanged) {
-          formData.append('pictures', existingPictures[i]);
-        }
+    if (this.checkpointForm.value.pictures) {
+      const selectedFiles = this.checkpointForm.value.pictures;
+      for (let i = 0; i < selectedFiles.length; i++) {
+        formData.append('pictures', selectedFiles[i]);
+        console.log(formData.get('pictures'))
       }
     }
   }
