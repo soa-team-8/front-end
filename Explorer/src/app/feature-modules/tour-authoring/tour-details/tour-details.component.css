@@ -1,495 +1,503 @@
 .tour-details {
-    width: 680px;
-    display:flex;
-    gap: 20px;
-    flex-direction: column;
-    margin: 0 auto;
+  width: 680px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.tour-details-table {
+  background-color: #B6D4AF;
+}
+
+.title {
+  color: #1e6149;
+  font-size: 6vh;
+  font-size: 700;
+}
+
+.tour-div {
+  background-image: url('./login_background.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 1550px;
+}
+
+th {
+  width: 250px;
+  height: 35px;
+  text-align: center;
+  background-color: #3B846B;
+  color: black;
+  font-size: 2.3vh;
+}
+
+.buttonEdit {
+  width: auto;
+  margin-left: 0px;
+
+  margin-bottom: 200px;
+  padding: 0px 10px;
+  width: 120px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #3B846B;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.buttonEdit1 {
+  width: auto;
+  margin-left: 50px;
+
+  margin-bottom: 200px;
+  padding: 0px 10px;
+  width: 120px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #3B846B;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.buttonBack {
+  width: auto;
+  margin-bottom: 15px;
+  width: 120px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #E67840;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.buttonDelete {
+  width: auto;
+  margin-bottom: 15px;
+  padding: 0px 10px;
+  width: 120px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #3B846B;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.buttonDelete1 {
+  width: auto;
+  margin-left: 800px;
+  margin-bottom: 15px;
+  padding: 0px 10px;
+  width: 120px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #3B846B;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.forecastButton {
+  width: auto;
+  margin-bottom: 15px;
+  width: 120px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #E67840;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+td {
+  width: 450px;
+  text-align: center;
+  font-size: 2.1vh;
+  font-weight: 500;
+}
+
+.cardcp {
+  width: 733px;
+  display: flex;
+  column-gap: 50px;
+  flex-direction: row;
+  justify-content: justify;
+  background-color: #B6D4AF;
+  border-radius: 5px;
 
 }
 
-
-
-.tour-details-table{
-    background-color:  #B6D4AF;
+.cp {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
 }
 
-.title{
-    color: #1e6149;
-    font-size: 6vh;
-    font-size: 700;
+.cps2 {
+  font-weight: 1000;
+  color: #3B846B
 }
 
-.tour-div{
-    background-image: url('./login_background.jpg');
-    background-size: cover;
-    background-position: center;
-    min-height: 1550px;
+.cps1 {
+  width: 300px;
+  margin-left: 15px;
 }
 
-th{
-    width: 250px;
-    height: 35px;
-    text-align: center;
-    background-color:#3B846B;
-    color: black;
-    font-size: 2.3vh;
+#tour-title {
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.buttonEdit{
-    width: auto;
-    margin-left: 0px;
-
-    margin-bottom: 200px;
-    padding: 0px 10px;
-    width: 120px;
-    font-size: 100%; 
-    color:#fff;
-    background-color: #3B846B;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 100px;
-    cursor: pointer;
-}
-.buttonEdit1{
-    width: auto;
-    margin-left: 50px;
-
-    margin-bottom: 200px;
-    padding: 0px 10px;
-    width: 120px;
-    font-size: 100%; 
-    color:#fff;
-    background-color: #3B846B;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 100px;
-    cursor: pointer;
-}
-.buttonBack{
-    width: auto;
-    margin-bottom: 15px;
-    width: 120px;
-    font-size: 100%; 
-    color:#fff;
-    background-color:#E67840;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 100px;
-    cursor: pointer;
+#tour-details {
+  padding-top: 25px;
+  padding-left: 25px;
 }
 
-.buttonDelete{
-    width: auto;
-    margin-bottom: 15px;
-    padding: 0px 10px;
-    width: 120px;
-    font-size: 100%; 
-    color:#fff;
-    background-color: #3B846B;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 100px;
-    cursor: pointer;
-}
-.buttonDelete1{
-    width: auto;
-    margin-left: 800px;
-    margin-bottom: 15px;
-    padding: 0px 10px;
-    width: 120px;
-    font-size: 100%; 
-    color:#fff;
-    background-color: #3B846B;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 100px;
-    cursor: pointer;
-}
-.forecastButton{
-    width: auto;
-    margin-bottom: 15px;
-    width: 120px;
-    font-size: 100%; 
-    color:#fff;
-    background-color:#E67840;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 100px;
-    cursor: pointer;
-}
-td{
-    width: 450px;
-    text-align: center;
-    font-size: 2.1vh;
-    font-weight: 500;
-}
-.cardcp{
-    width: 733px;
-    display:flex;
-    column-gap: 50px;
-    flex-direction: row;
-    justify-content:justify;
-    background-color:  #B6D4AF;
-    border-radius: 5px;
-
+.mapa {
+  margin-left: -400px;
+  width: 1500px;
+  height: 500px;
+  background-color: rgb(37, 60, 53, 0.8);
 }
 
-
-.cp{
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 100%;
+.mapspan {
+  font-size: 3vh;
 }
 
-.cps2{
-font-weight: 1000;
-color:#3B846B
+p {
+  margin: 0 auto;
+  font-size: 4vh;
+  color: #E67840;
+  padding: 1% 2.5%;
 }
 
-.cps1{
-    width: 300px;
-    margin-left: 15px;
-}
-#tour-title{
-    font-size: 24px;
-    font-weight: bold;
-}
-
-#tour-details{
-    padding-top: 25px;
-    padding-left: 25px;
-}
-
-
-.mapa{
-    margin-left: -400px;
-    width: 1500px;
-    height: 500px;
-    background-color: rgb(37, 60, 53, 0.8);
-}
-
-.mapspan{
-    font-size: 3vh;
-}
-
-p{
-    margin: 0 auto;
-    font-size: 4vh;
-  color:#E67840;
-  padding: 1% 2.5%; 
-  
-}
-
-.subtitle{
-    font-size: 4vh;
-  color:#E67840;
+.subtitle {
+  font-size: 4vh;
+  color: #E67840;
   font-style: bold;
+}
+
+img {
+  object-fit: cover;
+  border: 2px solid #3B846B;
 
 }
 
-img{
-    object-fit: cover;
-    border: 2px solid #3B846B;
-
-}
-.cpmp{
-    font-size: 7vh;
-    text-align: right;
-    margin-left: 50px;
-    margin-top: 60px;
-}
-.cpp{
-    width: 150px;
-    text-align: left;
-     border: #3B846B solid 5px;
-     border-radius: 15px;
-
-}
-.routingButton{
-    width: 1500px;
-
-    background-color: rgb(37, 60, 53, 0.8);
-}
-.secretdiv{
-    background-color: #B6D4AF;
+.cpmp {
+  font-size: 7vh;
+  text-align: right;
+  margin-left: 50px;
+  margin-top: 60px;
 }
 
-.secretp{
-    font-size: 2vh;
-    color:#3B846B;
-    font-style: bold;
+.cpp {
+  width: 150px;
+  text-align: left;
+  border: #3B846B solid 5px;
+  border-radius: 15px;
 }
 
-.secretb{
-    margin-bottom: 0.5cm;
-    margin-left: 15px;
-    font-size: 100%; 
-    color:#fff;
-    background-color: #3B846B;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 100px;
-    cursor: pointer;
-    width: 110px;
-    height: 30px;
-
-}
-.secretb:hover{
-    background-color: #0d4b36;
-
-}
-.nextbtn{
-    margin-bottom: 0.5cm;
-    font-size: 100%; 
-    color:#fff;
-    background-color: #3B846B;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 100px;
-    cursor: pointer;
-    width: 25px;
-    height: 20px;
-
+.routingButton {
+  width: 1500px;
+  background-color: rgb(37, 60, 53, 0.8);
 }
 
-.nextbtn:hover{
-    background-color: #053423;
+.secretdiv {
+  background-color: #B6D4AF;
+}
 
+.secretp {
+  font-size: 2vh;
+  color: #3B846B;
+  font-style: bold;
 }
-.secret-span{
-    width: 600px;
-    display:flex;
-    gap: 10px;
-    flex-direction: row;
-    justify-content: space-between;
+
+.secretb {
+  margin-bottom: 0.5cm;
+  margin-left: 15px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #3B846B;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  cursor: pointer;
+  width: 110px;
+  height: 30px;
 }
+
+.secretb:hover {
+  background-color: #0d4b36;
+}
+
+.nextbtn {
+  margin-bottom: 0.5cm;
+  font-size: 100%;
+  color: #fff;
+  background-color: #3B846B;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  cursor: pointer;
+  width: 25px;
+  height: 20px;
+}
+
+.nextbtn:hover {
+  background-color: #053423;
+}
+
+.secret-span {
+  width: 600px;
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 textarea {
-    height: 100px;
-    width: 11cm;
-    resize: none;
-    margin-left: 10px;
-  }
-.managing-tour-div{   
-        margin: 20px auto;
+  height: 100px;
+  width: 11cm;
+  resize: none;
+  margin-left: 10px;
 }
 
-.tour-div{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.managing-tour-div {
+  margin: 20px auto;
 }
 
-.checkpoint-div{
-    width: 500px;
+.tour-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.managing-transport-div{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 200px;
-    height: 100px;
-    border: 2px solid #E67840;
-    margin-top: 450px;
-    margin-left: 230px;
-    background-color: #B6D4AF;
-}
-.legend-div{
-    width: 500px;
-    height: 100px;
-    border: 2px solid #E67840;
-    margin-top:450px;
-    background-color: #B6D4AF;
-}
-.selectTransport{
-    margin-left: 60px;
-    margin-right: 60px;
-    margin-top: 0px;
-    margin-bottom: auto;
-    width: 70px;
-    height: 30px;
-}
-.profile-select{
-    width: 100px;
-    height: 30px;
-    background-color:#fff;
-    border-color:#E67840;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
+.checkpoint-div {
+  width: 500px;
 }
 
-.tacp{
-    width: 8cm;
-
+.managing-transport-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 200px;
+  height: 100px;
+  border: 2px solid #E67840;
+  margin-top: 450px;
+  margin-left: 230px;
+  background-color: #B6D4AF;
 }
 
-.backButton{
-    width: auto;
-    padding: 0px 10px;
-    width: 120px;
-    font-size: 100%; 
-    color:#fff;
-    background-color: #E67840;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 100px;
-    cursor: hand;
-}
-.deleteButton{
-    width: auto;
-    margin-left: 240px;
-    padding: 0px 10px;
-    width: 120px;
-    font-size: 100%; 
-    color:#fff;
-    background-color:#E67840;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 100px;
-    cursor: hand;
-}
-.editButton{
-    width: auto;
-    padding: 0px 10px;
-    width: 120px;
-    font-size: 100%; 
-    color:#fff;
-    background-color:#E67840;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 100px;
-    cursor: hand;
-}
-.archiveButton{
-    width: auto;
-    margin-left: 500px;
-    padding: 0px 10px;
-    width: 120px;
-    font-size: 100%; 
-    color:#fff;
-    background-color:#E67840;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 100px;
-    cursor: hand;
+.legend-div {
+  width: 500px;
+  height: 100px;
+  border: 2px solid #E67840;
+  margin-top: 450px;
+  background-color: #B6D4AF;
 }
 
-.archiveButton:hover{
-    background-color: #dc4900;
-
+.selectTransport {
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 0px;
+  margin-bottom: auto;
+  width: 70px;
+  height: 30px;
 }
 
-.backButton:hover{
-    background-color: #dc4900;
-
+.profile-select {
+  width: 100px;
+  height: 30px;
+  background-color: #fff;
+  border-color: #E67840;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 }
 
-.editButton:hover{
-    background-color: #dc4900;
+.tacp {
+  width: 8cm;
+}
+
+.backButton {
+  width: auto;
+  padding: 0px 10px;
+  width: 120px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #E67840;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  cursor: hand;
+}
+
+.deleteButton {
+  width: auto;
+  margin-left: 240px;
+  padding: 0px 10px;
+  width: 120px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #E67840;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  cursor: hand;
+}
+
+.editButton {
+  width: auto;
+  padding: 0px 10px;
+  width: 120px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #E67840;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  cursor: hand;
+}
+
+.archiveButton {
+  width: auto;
+  margin-left: 500px;
+  padding: 0px 10px;
+  width: 120px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #E67840;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  cursor: hand;
+}
+
+.archiveButton:hover {
+  background-color: #dc4900;
 
 }
 
-.buttonTourStatistics:hover{
-    background-color: #dc4900;
-
+.backButton:hover {
+  background-color: #dc4900;
 }
 
-.deleteButton:hover{
-    background-color: #dc4900;
-
+.editButton:hover {
+  background-color: #dc4900;
 }
 
-.infodiv{
-    margin-left: -400px;
-    width: 1500px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 50px;
+.buttonTourStatistics:hover {
+  background-color: #dc4900;
 }
 
-.linfo{
-    background-color: rgb(37, 60, 53, 0.8);
-    border: #1e6149 solid 3px;
-    border-radius: 10px;
-    width: 700px;
+.deleteButton:hover {
+  background-color: #dc4900;
 }
 
-.transportth{
-    background-color: #62b598;
+.infodiv {
+  margin-left: -400px;
+  width: 1500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 50px;
 }
 
-.descriptiontd{
-    height: 150px;
-    border-top: #E67840 solid 0.5px;
-
+.linfo {
+  background-color: rgb(37, 60, 53, 0.8);
+  border: #1e6149 solid 3px;
+  border-radius: 10px;
+  width: 700px;
 }
 
-.equipmentdiv{
-    background-color: rgb(37, 60, 53, 0.8);
-    width: 800px;
-    height: 600px;
-    border: #1e6149 solid 3px;
-    border-radius: 10px;
-    overflow-y: hidden;
-    overflow-x: hidden;
+.transportth {
+  background-color: #62b598;
 }
 
-.equipmentth{
-    background-color:#d5e8d1;
-}
-.equipmentthd{
-    background-color: #d5e8d1;
-    width: 400px;
-}
-.tablecards{
-    border-top: #E67840 solid 0.5px; ;
+.descriptiontd {
+  height: 150px;
+  border-top: #E67840 solid 0.5px;
 }
 
-select{
-    width: 100;
-    background-color:#d5e8d1 ;
+.equipmentdiv {
+  background-color: rgb(37, 60, 53, 0.8);
+  width: 800px;
+  height: 600px;
+  border: #1e6149 solid 3px;
+  border-radius: 10px;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
-.transportationspan{
-    color: #E67840;
-    font-size: 400;
+.equipmentth {
+  background-color: #d5e8d1;
 }
 
-.buttonTourStatistics{
-    width: auto;
-    padding: 0px 10px;
-    width: 120px;
-    font-size: 100%; 
-    color:#fff;
-    background-color:#E67840;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 100px;
-    cursor: hand;
+.equipmentthd {
+  background-color: #d5e8d1;
+  width: 400px;
 }
-.buttonTourStatistics2{
-    width: auto;
-    padding: 0px 10px;
-    width: 120px;
-    font-size: 100%; 
-    color:#fff;
-    background-color:#E67840;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 100px;
-    cursor: hand;
+
+.tablecards {
+  border-top: #E67840 solid 0.5px;
 }
-.p{
-    text-align: center;
+
+select {
+  width: 100;
+  background-color: #d5e8d1;
+}
+
+.transportationspan {
+  color: #E67840;
+  font-size: 400;
+}
+
+.buttonTourStatistics {
+  width: auto;
+  padding: 0px 10px;
+  width: 120px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #E67840;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  cursor: hand;
+}
+
+.buttonTourStatistics2 {
+  width: auto;
+  padding: 0px 10px;
+  width: 120px;
+  font-size: 100%;
+  color: #fff;
+  background-color: #E67840;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  cursor: hand;
+}
+
+.p {
+  text-align: center;
 }
 
 .scroller::-webkit-scrollbar {
-    width: 12px;
-  }
-  
-  .scroller::-webkit-scrollbar-thumb {
-    background-color: #E67840; /* Color of the thumb */
-    border-radius: 10px; /* Rounded corners */
-    position: absolute;
-    left: 5px; 
-  }
-  
-  .scroller::-webkit-scrollbar-track {
-    background-color: #B6D4AF; /* Color of the track */
-    border-radius: 10px;
-    position: absolute;
-    left: 5px; 
-  }
-.scroller{
-    overflow-y: auto;
-    height: 100%;
-    position: relative;
+  width: 12px;
+}
+
+.scroller::-webkit-scrollbar-thumb {
+  background-color: #E67840;
+  border-radius: 10px;
+  position: absolute;
+  left: 5px;
+}
+
+.scroller::-webkit-scrollbar-track {
+  background-color: #B6D4AF;
+  border-radius: 10px;
+  position: absolute;
+  left: 5px;
+}
+
+.scroller {
+  overflow-y: auto;
+  height: 100%;
+  position: relative;
 }

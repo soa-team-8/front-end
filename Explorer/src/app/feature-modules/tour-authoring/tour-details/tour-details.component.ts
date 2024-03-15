@@ -3,7 +3,6 @@ import { Tour } from '../model/tour.model';
 import { TourAuthoringService } from '../tour-authoring.service';
 import { ActivatedRoute } from '@angular/router';
 import { Checkpoint } from '../model/checkpoint.model';
-import { PagedResults } from 'src/app/shared/model/paged-results.model';
 import { MapComponent } from 'src/app/shared/map/map.component';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -30,21 +29,22 @@ export class TourDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.tourID = params['id'];
       this.getTour(this.tourID);
-
+  
       this.service.getCheckpointsByTour(this.tourID).subscribe({
-        next: (result: PagedResults<Checkpoint>) => {
-          this.checkpoints = result.results;
-          this.profiles = [];
-          this.tour.tourTimes.forEach(e => {
-            this.profiles.push(e.transportation);
-          });
-          this.profile = this.profiles[0];
+        next: (result: Checkpoint[]) => {
+          this.checkpoints = result;
+          // this.profiles = [];
+          // this.tour.tourTimes.forEach(e => {
+          //   this.profiles.push(e.transportation);
+          // });
+          // this.profile = this.profiles[0];
+  
           if (this.checkpoints != null) {
             this.route();
           }
         }
       });
-    })
+    });
   }
 
   route(): void {
@@ -70,7 +70,6 @@ export class TourDetailsComponent implements OnInit {
   getTour(id: number): void {
     this.service.get(id).subscribe((result: Tour) => {
       this.tour = result;
-      console.log(this.tour.checkpoints);
       this.tour.checkpoints.forEach(element => {
         if (element.currentPicture == undefined) {
           element.currentPicture = 0;
@@ -100,7 +99,6 @@ export class TourDetailsComponent implements OnInit {
 
   onBack(): void {
     this.router.navigate([`tour`]);
-
   }
 
   onEdit(): void {
@@ -112,7 +110,6 @@ export class TourDetailsComponent implements OnInit {
       next: (result: Tour) => {
         this.tour = result;
         this.fillCheckpointDetails();
-
       }
     });
   }
@@ -186,18 +183,17 @@ export class TourDetailsComponent implements OnInit {
 
   ShowPopup(): void {
     if (this.checkpoints.length > 0) {
-
       const result = {
         lat: this.checkpoints[1].latitude,
         lon: this.checkpoints[1].longitude,
       }
+
       this.dialog.open(ForecastPopupComponent, {
         data: result,
         width: '500px',
         height: '520px',
         panelClass: 'custom-dialog',
       });
-      console.log(result);
     }
   }
 

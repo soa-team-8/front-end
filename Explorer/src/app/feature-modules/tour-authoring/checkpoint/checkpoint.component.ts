@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { TourAuthoringService } from '../tour-authoring.service';
 import { Checkpoint } from '../model/checkpoint.model';
 import { PagedResults } from 'src/app/shared/model/paged-results.model';
-import { NgModel, NgForm } from '@angular/forms';
 import { CheckpointFormComponent } from '../checkpoint-form/checkpoint-form.component';
 import { Tour } from '../model/tour.model';
 import { TourTime } from '../model/tourTime.model';
@@ -43,7 +42,6 @@ export class CheckpointComponent implements OnInit {
       this.tourID = params['id'];
       this.service.get(this.tourID).subscribe((result: Tour) => {
         this.tour = result;
-        console.log(this.tour.checkpoints);
         this.checkpoints = this.tour.checkpoints || [];
         this.tourTimes = this.tour.tourTimes;
         //this.fillProfiles();
@@ -77,10 +75,8 @@ export class CheckpointComponent implements OnInit {
           coordsWithInfo.push({ lat: e.latitude, lon: e.longitude, name: e.name, desc: e.description, picture: e.pictures![0] });
         }
       });
-      this.profiles.forEach(element => {
-        this.mapComponent.setRoute(coords, element.toString());
-        this.mapComponent.setRouteWithInfo(coordsWithInfo, element.toString());
-      });
+      this.mapComponent.setRoute(coords, 'walking');
+      this.mapComponent.setRouteWithInfo(coordsWithInfo, 'walking');
       //this.fillProfiles();
     }
   }
