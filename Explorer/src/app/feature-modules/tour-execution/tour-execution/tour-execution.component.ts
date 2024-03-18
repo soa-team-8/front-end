@@ -139,12 +139,7 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
           if(e != this.tour.checkpoints[0])
             coords.push({lat:e.latitude, lon:e.longitude, name: e.name, desc: e.description, picture: e.pictures![0]});
       });
-      if(this.tour.tourTimes != undefined)
-      {
-        this.tour.tourTimes.forEach(element => {
-          this.simulatorComponent.addCheckpoint(coords, element.transportation);
-        });
-      }
+      this.simulatorComponent.addCheckpoint(coords, 'walking');
     }
   }
   addMapObjectsOnMap(): void{
@@ -249,7 +244,7 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
   }
 
   checkPosition(): void{
-    if(this.oldPosition != this.simulatorComponent.selectedPosition){
+    if(/*this.oldPosition != this.simulatorComponent.selectedPosition*/true){
       if(this.oldPosition == undefined)
         this.oldPosition = this.simulatorComponent.selectedPosition;
       if(this.simulatorComponent.selectedPosition != undefined)

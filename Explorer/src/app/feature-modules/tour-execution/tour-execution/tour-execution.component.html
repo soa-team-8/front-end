@@ -9,22 +9,7 @@
                         Description: {{tour.description}}
                     </div>
                 </div>
-                <div id="info-table-div">
-                    <table style="overflow-y: hidden;">
-                        <tr>
-                            <td style="width: 19%;">Required time:</td>
-                            <td>
-                                <table>
-                                    <tr *ngFor="let e of tour.tourTimes">
-                                        <th>{{e.transportation}}</th>
-                                        <td style="width: fit-content;">distance: {{(e.distance/1000).toFixed(2)}} km</td>
-                                        <td style="width: fit-content;">time: {{(e.timeInSeconds / 3600).toFixed(0)}} h {{((e.timeInSeconds%3600)/60).toFixed(0)}} min</td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                
                 <br>
                 <div *ngIf="tour.equipment.length > 0" id="info-table-div">
                     <table style="overflow-y: hidden;">
