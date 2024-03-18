@@ -45,8 +45,8 @@ export class TouristEncounterFormComponent {
 
   getCheckpoints(): void {
     this.tourAuthoringService.getCheckpoints().subscribe({
-      next: (result: PagedResults<Checkpoint>) => {
-        this.checkpoints = result.results;
+      next: (result: Checkpoint[]) => {
+        this.checkpoints = result;
       },
       error: () => {
       }
