@@ -86,12 +86,12 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
         {
           this.tourExecution = result;  
           this.tour = result.tour;    
-          this.findCheckpoints();
+          //this.findCheckpoints();
         }else{
           this.service.startExecution(this.tourId).subscribe( result =>{
             this.tourExecution = result;  
             this.tour = result.tour; 
-            this.findCheckpoints();
+            //this.findCheckpoints();
           });
         }
         this.service.getActiveEncounters(this.tourId).subscribe(rr => {
@@ -255,7 +255,10 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
 
             this.service.getEncounters(this.tourId, this.simulatorComponent.selectedPosition.longitude, this.simulatorComponent.selectedPosition.latitude).subscribe(result => {
               this.availableEncounterExecution = result;
-              this.availableEncounter = this.availableEncounterExecution.encounterDto; 
+              this.availableEncounter = this.availableEncounterExecution.encounter;
+              if(this.encounterExecutions === null){
+                this.encounterExecutions = []
+              } 
               if(this.encounterExecutions && !this.encounterExecutions.find(e => e.id == result.id))
                 this.encounterExecutions.push(result);
 
@@ -282,7 +285,7 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
   }
 
   checkSocialEncounterStatus(): void{
-    if(this.encounterExecutions.find(n => n.encounterDto.type == 'Social'))
+    if(this.encounterExecutions.find(n => n.encounter.type == 'Social'))
               {
                 this.service.checkIfInRange(this.tourId, this.availableEncounterExecution.id, this.simulatorComponent.selectedPosition.longitude, this.simulatorComponent.selectedPosition.latitude).subscribe(result => {
                   if(result.status == 'Completed' && this.availableEncounterExecution.status != 'Completed')
@@ -292,7 +295,7 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
                     });
                   }
                   this.availableEncounterExecution = result;
-                  this.availableEncounter = this.availableEncounterExecution.encounterDto;
+                  this.availableEncounter = this.availableEncounterExecution.encounter;
                   this.currentlyPeopleOnSocialEncounter = this.availableEncounter.activeTouristsIds?.length || 0;
                   this.encounterExecutions.forEach(e => {
                     if(e.id == result.id)
@@ -307,11 +310,11 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
   }
 
   checkHiddenLocationEncounterStatus(): void{
-    if(this.encounterExecutions.find(n => n.encounterDto.type == 'Location'))
+    if(this.encounterExecutions.find(n => n.encounter.type == 'Location'))
     {
       this.service.checkIfInRangeLocation(this.tourId, this.availableEncounterExecution.id, this.simulatorComponent.selectedPosition.longitude, this.simulatorComponent.selectedPosition.latitude).subscribe(result => {
       this.availableEncounterExecution = result;
-      this.availableEncounter = this.availableEncounterExecution.encounterDto;
+      this.availableEncounter = this.availableEncounterExecution.encounter;
       this.encounterExecutions.forEach(e => {
         if(e.id == result.id)
           {
@@ -354,7 +357,7 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
       element.showedPointPicture=element.pictures![element.currentPointPicture];
     });
     this.calculatePercantage()
-    this.changeDetection.detectChanges();
+    //this.changeDetection.detectChanges();
   }
 
   // Checkpoint Secret
@@ -424,11 +427,11 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
     this.service.activateEncounter(id, this.oldPosition.longitude, this.oldPosition.latitude)
     .subscribe(result =>{
       this.availableEncounterExecution = result;
-      this.availableEncounterExecution.encounterDto = this.availableEncounter;
+      this.availableEncounterExecution.encounter = this.availableEncounter;
       const indexToUpdate = this.encounterExecutions.findIndex(element => element.id === this.availableEncounterExecution.id);
       if (indexToUpdate !== -1) {
         this.encounterExecutions[indexToUpdate] = result;
-        this.encounterExecutions[indexToUpdate].encounterDto = this.availableEncounterExecution.encounterDto;
+        this.encounterExecutions[indexToUpdate].encounter = this.availableEncounterExecution.encounter;
       }
       console.log(this.encounterExecutions);
 
@@ -442,11 +445,11 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
     this.service.completeEncounter(encounterExecution.id, this.oldPosition.longitude, this.oldPosition.latitude)
     .subscribe(result =>{
       this.availableEncounterExecution = result;
-      this.availableEncounterExecution.encounterDto = this.availableEncounter;
+      this.availableEncounterExecution.encounter = this.availableEncounter;
       const indexToUpdate = this.encounterExecutions.findIndex(element => element.id === this.availableEncounterExecution.id);
       if (indexToUpdate !== -1) {
         this.encounterExecutions[indexToUpdate] = result;
-        this.encounterExecutions[indexToUpdate].encounterDto = this.availableEncounterExecution.encounterDto;
+        this.encounterExecutions[indexToUpdate].encounter = this.availableEncounterExecution.encounter;
       }
       console.log(this.encounterExecutions);
 

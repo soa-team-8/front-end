@@ -1,52 +1,52 @@
 <div id="encounter-popup">
     <div class="encounter-title">
-        <h2 mat-dialog-title>Encounter {{data.encounterExecution.encounterDto.name}}</h2>
+        <h2 mat-dialog-title>Encounter {{data.encounterExecution.encounter.name}}</h2>
     </div>
     <mat-dialog-content>
         <!-- Misc encounter -->
-        <div *ngIf="data.encounterExecution.encounterDto.type == 'Misc'">
+        <div *ngIf="data.encounterExecution.encounter.type == 2">
             <div class="social-div">
                 <div>
-                    <label class="encounter-description">Do this chalenge and win {{data.encounterExecution.encounterDto.xp}} XP points! </label>
+                    <label class="encounter-description">Do this chalenge and win {{data.encounterExecution.encounter.xp}} XP points! </label>
                     <label class="encounter-description">Status: {{data.encounterExecution.status}}</label>
-                    <label class="encounter-description">{{data.encounterExecution.encounterDto.description}} </label>
+                    <label class="encounter-description">{{data.encounterExecution.encounter.description}} </label>
                 </div>
-                <label class="social-emoji" *ngIf="data.encounterExecution.status == 'Completed'">🥇</label>
-                <label class="social-emoji" *ngIf="data.encounterExecution.status != 'Completed'">🏃</label>
+                <label class="social-emoji" *ngIf="data.encounterExecution.status == 2">🥇</label>
+                <label class="social-emoji" *ngIf="data.encounterExecution.status != 2">🏃</label>
             </div>
-            <button class="button" (click)="onActivate()" *ngIf="data.encounterExecution.status === 'Pending'">Activate</button>
-            <button class="button" (click)="onComplete()" *ngIf="data.encounterExecution.status === 'Active'">Complete</button>
+            <button class="button" (click)="onActivate()" *ngIf="data.encounterExecution.status === 0">Activate</button>
+            <button class="button" (click)="onComplete()" *ngIf="data.encounterExecution.status === 1">Complete</button>
         </div>
 
         <!-- Social encounter -->
-        <div *ngIf="data.encounterExecution.encounterDto.type == 'Social'">
-            <label class="encounter-description">Do this chalenge and win {{data.encounterExecution.encounterDto.xp}} XP points! Wait for required amount of tourists to activate this chalenge! </label>
+        <div *ngIf="data.encounterExecution.encounter.type == 0">
+            <label class="encounter-description">Do this chalenge and win {{data.encounterExecution.encounter.xp}} XP points! Wait for required amount of tourists to activate this chalenge! </label>
             <label class="encounter-description">Status:  {{data.encounterExecution.status}}</label>
-            <label class="encounter-description">Description: {{data.encounterExecution.encounterDto.description}} </label>
+            <label class="encounter-description">Description: {{data.encounterExecution.encounter.description}} </label>
             <div class="social-div">
                 <div>
-                    <label>Currently {{data.encounterExecution.encounterDto.activeTouristsIds?.length}} people, required {{data.encounterExecution.encounterDto.requiredPeople}}</label><br>
-                    <label>Range: {{data.encounterExecution.encounterDto.range}}</label><br>
-                    <button class="button" *ngIf="data.encounterExecution.status === 'Pending'" (click)="onActivate()">Activate</button>
+                    <label>Currently {{data.encounterExecution.encounter.activeTouristsIds?.length}} people, required {{data.encounterExecution.encounter.requiredPeople}}</label><br>
+                    <label>Range: {{data.encounterExecution.encounter.range}}</label><br>
+                    <button class="button" *ngIf="data.encounterExecution.status === 0" (click)="onActivate()">Activate</button>
                 </div>
-                <label class="social-emoji" *ngIf="data.encounterExecution.status === 'Completed'">🥇</label>
-                <label class="social-emoji" *ngIf="data.encounterExecution.status != 'Completed'">🤝🏻</label>
+                <label class="social-emoji" *ngIf="data.encounterExecution.status === 1">🥇</label>
+                <label class="social-emoji" *ngIf="data.encounterExecution.status != 1">🤝🏻</label>
             </div>
 
         </div>
 
         <!-- Hidden location encounter -->
-        <div *ngIf="data.encounterExecution.encounterDto.type == 'Location'">
-            <label class="encounter-description">Do this chalenge and win {{data.encounterExecution.encounterDto.xp}} XP points! Find the location where this picuture is taken! Stay in that location for at  least 30 seconds to complete the chalenge. </label>
-            <label class="encounter-description">Description: {{data.encounterExecution.encounterDto.description}} </label> 
+        <div *ngIf="data.encounterExecution.encounter.type == 1">
+            <label class="encounter-description">Do this chalenge and win {{data.encounterExecution.encounter.xp}} XP points! Find the location where this picuture is taken! Stay in that location for at  least 30 seconds to complete the chalenge. </label>
+            <label class="encounter-description">Description: {{data.encounterExecution.encounter.description}} </label> 
             <div class="social-div">
                 <div>
-                    <img class="hidden-location-img" [src]="getImageUrl(data.encounterExecution.encounterDto.image)">
-                    <button class="button" *ngIf="data.encounterExecution.status ==='Pending'" (click)="onActivate()">Activate</button>
-                    <button class="button" *ngIf="data.encounterExecution.status === 'Active'" (click)="onComplete()">Complete</button>
+                    <img class="hidden-location-img" [src]="getImageUrl(data.encounterExecution.encounter.image)">
+                    <button class="button" *ngIf="data.encounterExecution.status ===0" (click)="onActivate()">Activate</button>
+                    <button class="button" *ngIf="data.encounterExecution.status === 1" (click)="onComplete()">Complete</button>
                 </div>
-                <label class="social-emoji" *ngIf="data.encounterExecution.status === 'Completed'">🥇</label>
-                <label class="social-emoji" *ngIf="data.encounterExecution.status !== 'Completed'">📷</label>
+                <label class="social-emoji" *ngIf="data.encounterExecution.status === 2">🥇</label>
+                <label class="social-emoji" *ngIf="data.encounterExecution.status !== 2">📷</label>
             </div>
         </div>
     </mat-dialog-content>
