@@ -21,7 +21,7 @@ import { EncounterService } from 'src/app/feature-modules/encounters/encounter.s
 export class CheckpointRequestReviewComponent implements OnInit{
   
   requestDetails: { id: number, checkpointName: string, checkpointDescription: string, authorName: string, status: Status, onHold:boolean, comment: string }[] = [];
-  allCheckpoints: PagedResults<Checkpoint>;
+  allCheckpoints: Checkpoint[] = [];
   allUsers: PagedResults<User>;
   allCheckpointRequests: CheckpointRequest[] = [];
 
@@ -30,8 +30,8 @@ export class CheckpointRequestReviewComponent implements OnInit{
   allObjectRequests: ObjectRequest[] = [];
 
   encounterRequestDetails: { id: number, encounterName: string, encounterXp: number,encounterLongitude: number,encounterLatitude: number, touristName: string, status: Status, onHold:boolean}[] = [];
-  allEncounters: PagedResults<Encounter>;
-  allEncounterRequests: PagedResults<EncounterRequest>;
+  allEncounters: Encounter[] = [];
+  allEncounterRequests: EncounterRequest[] = [];
 
   constructor(private adminService: AdministrationService, private tourAuthService: TourAuthoringService, private encounterService: EncounterService) { }
 
@@ -66,7 +66,7 @@ export class CheckpointRequestReviewComponent implements OnInit{
 
   getAllEncounterRequests(): void {
     this.encounterService.getAllRequests().subscribe({
-      next: (requests: PagedResults<EncounterRequest>) => {
+      next: (requests: EncounterRequest[]) => {
           this.allEncounterRequests = requests;
           this.getAllEncounters();
       },
@@ -99,7 +99,7 @@ export class CheckpointRequestReviewComponent implements OnInit{
   */
   getAllEncounters(): void {
     this.encounterService.getEncounters().subscribe({
-        next: (objects: PagedResults<Encounter>) => {
+        next: (objects: Encounter[]) => {
             this.allEncounters = objects;
             this.getAllObjects();
         },
@@ -123,7 +123,7 @@ export class CheckpointRequestReviewComponent implements OnInit{
 
   getAllCheckpoints(): void {
     this.tourAuthService.getCheckpoints().subscribe({
-        next: (checkpoints: PagedResults<Checkpoint>) => {
+        next: (checkpoints: Checkpoint[]) => {
             this.allCheckpoints = checkpoints;
             this.getAllUsers()
         },
@@ -147,7 +147,7 @@ export class CheckpointRequestReviewComponent implements OnInit{
 
   fillRequestDetails(): void {
     this.allCheckpointRequests.forEach(request => {
-      this.allCheckpoints.results.forEach(checkPoint => {
+      this.allCheckpoints.forEach(checkPoint => {
         this.allUsers.results.forEach(user => {
           if(request.authorId === user.id && request.checkpointId === checkPoint.id) {
             let req: { id: number, checkpointName: string, checkpointDescription: string, authorName: string, status: Status, onHold:boolean, comment: string } = {
@@ -196,8 +196,8 @@ export class CheckpointRequestReviewComponent implements OnInit{
       });
     });
 
-    this.allEncounterRequests.results.forEach(request => {
-      this.allEncounters.results.forEach(encounter => {
+    this.allEncounterRequests.forEach(request => {
+      this.allEncounters.forEach(encounter => {
         this.allUsers.results.forEach(user => {
           if(request.touristId === user.id && request.encounterId === encounter.id) {
             let req: { id: number, encounterName: string, encounterXp: number,encounterLongitude: number,encounterLatitude: number, touristName: string, status: Status, onHold:boolean} = {

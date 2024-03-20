@@ -43,8 +43,8 @@ export class EncounterService {
     return this.http.delete<Encounter>(environment.apiHost + 'administration/encounter/'+checkpointId);
   }
 
-  getAllRequests(): Observable<PagedResults<EncounterRequest>> {
-    return this.http.get<PagedResults<EncounterRequest>>(environment.apiHost + 'administration/encounterRequests');
+  getAllRequests(): Observable<EncounterRequest[]> {
+    return this.http.get<EncounterRequest[]>(environment.apiHost + 'administration/encounterRequests');
   }
 
   acceptRequest(requestId: number): Observable<EncounterRequest> {
@@ -59,7 +59,7 @@ export class EncounterService {
     return this.http.get<PagedResults<User>>('https://localhost:44333/api/user');
   }
 
-  getEncounters(): Observable<PagedResults<Encounter>> {
-    return this.http.get<PagedResults<Encounter>>(environment.apiHost + 'administration/touristEncounter');
+  getEncounters(): Observable<Encounter[]> {
+    return this.http.get<Encounter[]>(environment.apiHost + 'administration/touristEncounter');
   }
 }

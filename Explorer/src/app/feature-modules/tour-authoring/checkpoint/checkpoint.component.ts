@@ -99,8 +99,8 @@ export class CheckpointComponent implements OnInit {
 
   getCheckpoints(): void {
     this.service.getCheckpoints().subscribe({
-      next: (result: PagedResults<Checkpoint>) => {
-        this.checkpoints = result.results;
+      next: (result: Checkpoint[]) => {
+        this.checkpoints = result;
       },
       error: () => {
       }

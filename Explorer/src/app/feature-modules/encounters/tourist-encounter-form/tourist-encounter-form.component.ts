@@ -45,8 +45,8 @@ export class TouristEncounterFormComponent {
 
   getCheckpoints(): void {
     this.tourAuthoringService.getCheckpoints().subscribe({
-      next: (result: PagedResults<Checkpoint>) => {
-        this.checkpoints = result.results;
+      next: (result: Checkpoint[]) => {
+        this.checkpoints = result;
       },
       error: () => {
       }
@@ -80,7 +80,7 @@ export class TouristEncounterFormComponent {
     formData.append('description', this.encounterForm.value.description||"");
     formData.append('authorId', this.authorId.toString());
     formData.append('xp', this.encounterForm.value.xp?.toString()||"");
-    formData.append('status', "Published");
+    formData.append('status', "Draft");
     formData.append('longitude',this.encounterForm.value.longitude?.toString()||"");
     formData.append('latitude',this.encounterForm.value.latitude?.toString()||"" );
     formData.append('type',this.encounterForm.value.type||"" );

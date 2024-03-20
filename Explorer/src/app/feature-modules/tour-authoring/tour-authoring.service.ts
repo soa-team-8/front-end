@@ -50,8 +50,8 @@ export class TourAuthoringService {
     return this.http.put<PrivateTour>(environment.apiHost + 'tourist/privateTours/start', privateTour);
   }
 
-  getCheckpoints(): Observable<PagedResults<Checkpoint>> {
-    return this.http.get<PagedResults<Checkpoint>>(environment.apiHost + 'administration/checkpoint')
+  getCheckpoints(): Observable<Checkpoint[]> {
+    return this.http.get<Checkpoint[]>(environment.apiHost + 'administration/checkpoint')
   }
 
   getCheckpoint(id:number): Observable<Checkpoint> {
