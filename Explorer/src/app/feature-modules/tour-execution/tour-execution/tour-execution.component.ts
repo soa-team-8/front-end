@@ -262,9 +262,9 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
               if(this.encounterExecutions && !this.encounterExecutions.find(e => e.id == result.id))
                 this.encounterExecutions.push(result);
 
-              if(this.availableEncounter && this.availableEncounter.type == 'Social')
+              if(this.availableEncounter && this.availableEncounter.type == '0')
               {
-                this.currentlyPeopleOnSocialEncounter = this.availableEncounter.activeTouristsIds?.length || 0;
+                this.currentlyPeopleOnSocialEncounter = 4 /*this.availableEncounter.activeTouristsIds?.length*/ || 0;
               }
             });
           this.findCheckpoints();
@@ -285,10 +285,10 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
   }
 
   checkSocialEncounterStatus(): void{
-    if(this.encounterExecutions.find(n => n.encounter.type == 'Social'))
+    if(this.encounterExecutions.find(n => n.encounter.type == '0'))
               {
                 this.service.checkIfInRange(this.tourId, this.availableEncounterExecution.id, this.simulatorComponent.selectedPosition.longitude, this.simulatorComponent.selectedPosition.latitude).subscribe(result => {
-                  if(result.status == 'Completed' && this.availableEncounterExecution.status != 'Completed')
+                  if(result.status == '2' && this.availableEncounterExecution.status != '2')
                   {
                     this.dialog.open(CompletedEncounterComponent, {
                       data: this.availableEncounter 
@@ -296,7 +296,7 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
                   }
                   this.availableEncounterExecution = result;
                   this.availableEncounter = this.availableEncounterExecution.encounter;
-                  this.currentlyPeopleOnSocialEncounter = this.availableEncounter.activeTouristsIds?.length || 0;
+                  this.currentlyPeopleOnSocialEncounter = 4 /*this.availableEncounter.activeTouristsIds?.length*/ || 0;
                   this.encounterExecutions.forEach(e => {
                     if(e.id == result.id)
                     {
@@ -364,6 +364,7 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
   OnViewSecret(c:Checkpoint):void{
       if(c.isSecretPrerequisite && c.encounterId != 0)
       {
+        // TODO change completed to 2
         if(this.availableEncounterExecution.status == 'Completed' && c.encounterId == this.availableEncounterExecution.encounterId)
         {
           c.visibleSecret=!c.visibleSecret;
