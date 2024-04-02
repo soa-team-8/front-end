@@ -30,8 +30,8 @@ export class CheckpointRequestReviewComponent implements OnInit{
   allObjectRequests: ObjectRequest[] = [];
 
   encounterRequestDetails: { id: number, encounterName: string, encounterXp: number,encounterLongitude: number,encounterLatitude: number, touristName: string, status: Status, onHold:boolean}[] = [];
-  allEncounters: PagedResults<Encounter>;
-  allEncounterRequests: PagedResults<EncounterRequest>;
+  allEncounters: Encounter[] = [];
+  allEncounterRequests: EncounterRequest[] = [];
 
   constructor(private adminService: AdministrationService, private tourAuthService: TourAuthoringService, private encounterService: EncounterService) { }
 
@@ -44,18 +44,6 @@ export class CheckpointRequestReviewComponent implements OnInit{
     this.adminService.getAllCheckpointRequests().subscribe({
       next: (requests: CheckpointRequest[]) => {
           this.allCheckpointRequests = requests;
-          this.getAllObjectRequests();
-      },
-      error: () => {
-          // Handle errors
-      }
-  });
-  }
-
-  getAllObjectRequests(): void {
-    this.adminService.getAllObjectRequests().subscribe({
-      next: (requests: ObjectRequest[]) => {
-          this.allObjectRequests = requests;
           this.getAllEncounterRequests();
       },
       error: () => {
@@ -64,9 +52,22 @@ export class CheckpointRequestReviewComponent implements OnInit{
   });
   }
 
+  /*getAllObjectRequests(): void {
+    this.adminService.getAllObjectRequests().subscribe({
+      next: (requests: ObjectRequest[]) => {
+          this.allObjectRequests = requests;
+          this.getAllEncounterRequests();
+      },
+      error: () => {
+          // Handle errors
+          this.getAllEncounterRequests();
+      }
+  });
+  }*/
+
   getAllEncounterRequests(): void {
     this.encounterService.getAllRequests().subscribe({
-      next: (requests: PagedResults<EncounterRequest>) => {
+      next: (requests: EncounterRequest[]) => {
           this.allEncounterRequests = requests;
           this.getAllEncounters();
       },
@@ -99,9 +100,10 @@ export class CheckpointRequestReviewComponent implements OnInit{
   */
   getAllEncounters(): void {
     this.encounterService.getEncounters().subscribe({
-        next: (objects: PagedResults<Encounter>) => {
+        next: (objects: Encounter[]) => {
             this.allEncounters = objects;
-            this.getAllObjects();
+            this.getAllCheckpoints();
+            //this.getAllObjects();
         },
         error: () => {
             // Handle errors
@@ -146,7 +148,7 @@ export class CheckpointRequestReviewComponent implements OnInit{
   }
 
   fillRequestDetails(): void {
-    this.allCheckpointRequests.forEach(request => {
+    /*this.allCheckpointRequests.forEach(request => {
       this.allCheckpoints.results.forEach(checkPoint => {
         this.allUsers.results.forEach(user => {
           if(request.authorId === user.id && request.checkpointId === checkPoint.id) {
@@ -169,9 +171,9 @@ export class CheckpointRequestReviewComponent implements OnInit{
           }
         });
       });
-    });
+    });*/
 
-    this.allObjectRequests.forEach(request => {
+   /* this.allObjectRequests.forEach(request => {
       this.allObjects.results.forEach(object => {
         this.allUsers.results.forEach(user => {
           if(request.authorId === user.id && request.mapObjectId === object.id) {
@@ -194,10 +196,10 @@ export class CheckpointRequestReviewComponent implements OnInit{
           }
         });
       });
-    });
+    });*/
 
-    this.allEncounterRequests.results.forEach(request => {
-      this.allEncounters.results.forEach(encounter => {
+    this.allEncounterRequests.forEach(request => {
+      this.allEncounters.forEach(encounter => {
         this.allUsers.results.forEach(user => {
           if(request.touristId === user.id && request.encounterId === encounter.id) {
             let req: { id: number, encounterName: string, encounterXp: number,encounterLongitude: number,encounterLatitude: number, touristName: string, status: Status, onHold:boolean} = {

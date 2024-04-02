@@ -179,7 +179,7 @@ export class AdministrationService {
   }
 
   getAllUsers(): Observable<PagedResults<User>> {
-    return this.http.get<PagedResults<User>>('https://localhost:44333/api/user');
+    return this.http.get<PagedResults<User>>('http://localhost:44333/api/user');
   }
 
   //checkpoint requests
