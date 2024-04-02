@@ -42,6 +42,9 @@ export class TourAuthoringService {
   getCheckpoints(): Observable<PagedResults<Checkpoint>> {
     return this.http.get<PagedResults<Checkpoint>>(environment.apiHost + 'administration/checkpoint')
   }
+  getCheckpoints2(): Observable<Checkpoint[]> {
+    return this.http.get<Checkpoint[]>(environment.apiHost + 'administration/checkpoint')
+  }
   getCheckpoint(id:number): Observable<Checkpoint> {
     return this.http.get<Checkpoint>(environment.apiHost + 'administration/checkpoint/details/'+id);
   }
