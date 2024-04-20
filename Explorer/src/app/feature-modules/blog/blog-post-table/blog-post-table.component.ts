@@ -45,8 +45,10 @@ export class BlogPostTableComponent implements OnInit {
               this.totalBlogPosts = 0;
           }
           else {
-            //this.blogPosts = this.blogPosts.filter(post => this.socialProfile.followed.includes(post.userId!));
-            //this.totalBlogPosts = this.blogPosts.length;
+            this.blogPosts = this.blogPosts.filter(post =>
+              this.socialProfile.followed.some(account => account.id === post.userId)
+            );
+            this.totalBlogPosts = this.blogPosts.length;
           }
 
         });

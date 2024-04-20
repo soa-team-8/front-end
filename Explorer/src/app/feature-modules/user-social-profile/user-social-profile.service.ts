@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { SocialProfile } from './model/social-profile.model';
 import { environment } from 'src/env/environment';
 import { Message } from './model/message.model';
+import { Account } from '../administration/model/account.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,10 @@ export class UserSocialProfileService {
 
   getSocilaProfile(id: number): Observable<SocialProfile> {
     return this.http.get<SocialProfile>(environment.apiHost + 'social-profile/get/' + id);
+  }
+
+  getRecommendations(id: number): Observable<Account[]> {
+    return this.http.get<Account[]>(environment.apiHost + 'social-profile/recommendations/' + id);
   }
 
   follow(followerId: number, followedId: number): Observable<SocialProfile> {
