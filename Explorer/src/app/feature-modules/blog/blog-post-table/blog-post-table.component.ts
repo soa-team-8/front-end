@@ -39,10 +39,16 @@ export class BlogPostTableComponent implements OnInit {
         this.user = user;
         this.spservice.getSocilaProfile(this.user.id).subscribe((resultt) => {
           this.socialProfile = resultt;
-        
-          const followedIds = this.socialProfile.followed.map(account => account.id);
-          this.blogPosts = this.blogPosts.filter(post => followedIds.includes(post.userId!));
-          this.totalBlogPosts = this.blogPosts.length;
+          console.log(this.socialProfile);
+          if(this.socialProfile.followed === null){
+              this.blogPosts = [];
+              this.totalBlogPosts = 0;
+          }
+          else {
+            //this.blogPosts = this.blogPosts.filter(post => this.socialProfile.followed.includes(post.userId!));
+            //this.totalBlogPosts = this.blogPosts.length;
+          }
+
         });
       });
     });

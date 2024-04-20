@@ -39,27 +39,27 @@ export class SocialProfileComponent implements OnInit{
     });
   }
 
-  getSocialProfile(id: number): void {
-    this.service.getSocilaProfile(id).subscribe((result: SocialProfile) => {
+getSocialProfile(id: number): void {
+  this.service.getSocilaProfile(id).subscribe((result: SocialProfile) => {
       this.socialProfile = result;
-    });
-  }
+  });
+}
 
-  onFollowClick(followedId?: number): void {
-    if(this.user && followedId){
-      this.service.follow(this.user.id, followedId).subscribe((result: SocialProfile) => {
-        this.socialProfile = result;
-      });
+onFollowClick(followedId?: number): void {
+    if (this.user && followedId) {
+        this.service.follow(this.user.id, followedId).subscribe((result: SocialProfile) => {
+            this.socialProfile = result;
+        });
     }
-  }
+}
 
-  onUnfollowClick(followedId?: number): void {
-    if(this.user && followedId){
-      this.service.unfollow(this.user.id, followedId).subscribe((result: SocialProfile) => {
-        this.socialProfile = result;
-      });
+onUnfollowClick(followedId?: number): void {
+    if (this.user && followedId) {
+        this.service.unfollow(this.user.id, followedId).subscribe((result: SocialProfile) => {
+            this.socialProfile = result;
+        });
     }
-  }
+}
 
   onProfileTabClick(): void {
     this.activeTab = "profile";

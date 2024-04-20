@@ -38,7 +38,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let f of socialProfile.followers">
-                            <td class="follow-td">{{ f.username }}</td>
+                            <td class="follow-td">{{f.username}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -51,7 +51,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let f of socialProfile.followed">
-                            <td class="follow-td">{{ f.username }}</td>
+                            <td class="follow-td">{{f.username}}</td>
                             <td class="follow-td">
                                 <button id="unfollow-button" (click)="onUnfollowClick(f.id)">Unfollow</button>
                             </td>
@@ -68,7 +68,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let f of socialProfile.followable">
-                            <td class="follow-td">{{ f.username }}</td>
+                            <td class="follow-td">{{f.username}}</td>
                             <td class="follow-td">
                                 <button id="follow-button" (click)="onFollowClick(f.id)">Follow</button>
                             </td>
@@ -106,7 +106,7 @@
                     <label id="recipient-lab">Recipient:</label>
                     <br>
                     <select  required [(ngModel)]="selectedRecipientId" name="recipient">
-                        <option *ngFor="let f of socialProfile.followers" [value]="f.id">{{ f.username }}</option>
+                        <option *ngFor="let f of socialProfile.followers" [value]="f.id">{{f.username}}</option>
                     </select>
                 </div>
                 
