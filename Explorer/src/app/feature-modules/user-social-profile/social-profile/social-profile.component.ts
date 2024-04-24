@@ -5,6 +5,7 @@ import { User } from 'src/app/infrastructure/auth/model/user.model';
 import { UserSocialProfileService } from '../user-social-profile.service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { Message } from '../model/message.model';
+import { Account } from '../../administration/model/account.model';
 
 @Component({
   selector: 'xp-social-profile',
@@ -15,6 +16,7 @@ export class SocialProfileComponent implements OnInit{
   @ViewChild(MapComponent) mapComponent: MapComponent;
   user: User | undefined;
   socialProfile: SocialProfile;
+  recomendations: Account[];
   inbox: Message[];
   sent: Message[];
   activeTab: string = 'inbox';
@@ -38,28 +40,43 @@ export class SocialProfileComponent implements OnInit{
       // TODO - display message on see details in notification
     });
   }
-
-  getSocialProfile(id: number): void {
-    this.service.getSocilaProfile(id).subscribe((result: SocialProfile) => {
-      this.socialProfile = result;
+  getRecommendations(id: number): void {
+    this.service.getRecommendations(id).subscribe((result: Account[]) => {
+        this.recomendations = result;
     });
   }
 
-  onFollowClick(followedId?: number): void {
-    if(this.user && followedId){
-      this.service.follow(this.user.id, followedId).subscribe((result: SocialProfile) => {
-        this.socialProfile = result;
-      });
-    }
-  }
 
-  onUnfollowClick(followedId?: number): void {
-    if(this.user && followedId){
-      this.service.unfollow(this.user.id, followedId).subscribe((result: SocialProfile) => {
-        this.socialProfile = result;
-      });
+getSocialProfile(id: number): void {
+  this.service.getSocilaProfile(id).subscribe((result: SocialProfile) => {
+      this.socialProfile = result;
+      if (this.user && this.user.id) {
+        this.getRecommendations(this.user.id);
+      }
+  });
+}
+
+onFollowClick(followedId?: number): void {
+    if (this.user && followedId) {
+        this.service.follow(this.user.id, followedId).subscribe((result: SocialProfile) => {
+            this.socialProfile = result;
+            if (this.user && this.user.id) {
+              this.getRecommendations(this.user.id);
+            }
+        });
     }
-  }
+}
+
+onUnfollowClick(followedId?: number): void {
+    if (this.user && followedId) {
+        this.service.unfollow(this.user.id, followedId).subscribe((result: SocialProfile) => {
+            this.socialProfile = result;
+            if (this.user && this.user.id) {
+              this.getRecommendations(this.user.id);
+            }
+        });
+    }
+}
 
   onProfileTabClick(): void {
     this.activeTab = "profile";
