@@ -141,7 +141,7 @@ export class AdministrationService {
   }
 
   addAdministratorCommentOnReportedIssue(id: number, comment: TourIssueComment): Observable<ReportedIssue> {
-    return this.http.post<ReportedIssue>(`https://localhost:44333/api/administration/reportedIssues/comment/${id}`, comment);
+    return this.http.post<ReportedIssue>(`http://localhost:44333/api/administration/reportedIssues/comment/${id}`, comment);
   }
 
   resolveReportedIssue(id: number): Observable<ReportedIssue> {
